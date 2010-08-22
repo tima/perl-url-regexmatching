@@ -1,0 +1,8 @@
+Revision history for Perl module URL::RegexMatching:
+
+0.01  Aug 21 2010 
+    - Quick port, tidy and documentation of original Daring
+      Fireball code.
+    - It compiles. (More tests need to be created.)
+    - Initial release commit in to GitHub.
+
