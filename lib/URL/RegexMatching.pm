@@ -9,12 +9,12 @@ our $VERSION   = '1.1';
 
 sub url_match_regex {
     return
-      qr{ (?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’])) };
+      qr{(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))};
 }
 
 sub http_url_match_regex {
     return
-      qr{ (?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’])) };
+      qr{(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))};
 }
 
 1;
@@ -28,31 +28,42 @@ matching URLs with regex patterns.
 
 =head1 SYNOPSIS
 
-  use URL::RegexMatching qw(url_match_regex http_url_match_regex)
-  
-  my $text = <<SAMPLE;
-  This is some sample text with links like <http://foo.com/blah_blah/> and 
-  others like bit.ly/foo and WWW.EXAMPLE.COM. And what about something like 
-  a mailto:name@example.com pattern?
-  SAMPLE
-  
-  my $url_match_regex = url_match_regex; 
-  my $http_regex = http_url_match_regex;
-
-  print "Using this sample text:\n";
-  print "$text\n\n";
-
-  print "Extract links using url_match_regex:\n";
-  while ($text =~/($url_match)/g) {
-  	print "\t$1\n";
-  }
-  
-  $text =~s{$http_regex}{<a href="$1">$1</a>}g
-  
-  print "\n\n";
-  print "Convert only HTTP links to HTML links using http_url_match_regex:\n";
-  print "$text\n";
-  
+	#!/usr/bin/perl
+	
+	use strict;
+	use warnings;
+	
+	use URL::RegexMatching qw(url_match_regex http_url_match_regex);
+	
+	my $text = <<SAMPLE;
+	This is some sample text with links like
+	<http://foo.com/blah_blah/> and others like WWW.EXAMPLE.COM
+	and bit.ly/foo. And what about something like a
+	mailto:name\@example.com pattern?
+	SAMPLE
+	
+	my $url_regex = url_match_regex; 
+	my $http_regex = http_url_match_regex;
+	
+	print "Using this sample text:\n";
+	print "$text\n";
+	
+	print "These strings are probably links:\n";
+	while ($text =~m{$url_regex}g) {
+		print "\t$1\n";
+	}
+	
+	print "\nWeb URLs:\n";
+	while ($text =~m{$http_regex}g) {
+		print "\t$1\n";
+	}
+	
+	$text =~s{$http_regex}{<a href="$1">$1</a>}g;
+	
+	print "\n\n";
+	print "Convert only HTTP links to HTML links using http_url_match_regex:\n";
+	print "$text\n";
+	
 =head1 DESCRIPTION
 
 This package is based on regular expression patterns
