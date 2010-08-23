@@ -91,6 +91,28 @@ forms such as www.example.com
 
 This method can be exported by request.
 
+=head1 KNOWN ISSUES
+
+Both regular expression patterns are known to fail against URL strings such as:
+
+=over 4
+
+=item http://example.com/quotes-are-“part”
+
+=item ✪df.ws/1234
+	
+=item example.com
+
+=item example.com/
+
+=back
+
+When using the C<http_url_match_regex> method it is likely
+to match link strings whose domain/file path looks like a
+web URL, but uses a different protocol such as
+'ftp://www.example.com/foo.txt' where the match would
+capture all but the 'ftp://' part.
+
 =head1 SUPPORT
 
 Bugs should be reported via the GitHub project issues tracking system:
