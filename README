@@ -1,0 +1,28 @@
+URL-RegexMatching
+
+Utility methods for matching URLs with regex patterns.
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Makefile.PL
+    make
+    make test
+    make install
+
+COPYRIGHT AND LICENCE
+
+This module is based on the work of John Gruber of Daring
+Fireball. John writes "this pattern is free for anyone to
+use, no strings attached. Consider it public domain."
+
+http://daringfireball.net/2010/07/improved_regex_for_matching_urls
+
+The software is released under the Artistic License. The
+terms of the Artistic License are described at
+http://www.perl.com/language/misc/Artistic.html. 
+
+Except where otherwise noted, URL::RegexMatching is
+Copyright 2010, Timothy Appnel, tima@cpan.org. All rights
+reserved.

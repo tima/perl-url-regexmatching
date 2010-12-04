@@ -134,6 +134,8 @@ use, no strings attached. Consider it public domain."
 
 The software is released under the Artistic License. The
 terms of the Artistic License are described at
-http://www.perl.com/language/misc/Artistic.html. Except
-where otherwise noted, URL::RegexMatching is Copyright
-2010, Timothy Appnel, tima@cpan.org. All rights reserved.
+http://www.perl.com/language/misc/Artistic.html. 
+
+Except where otherwise noted, URL::RegexMatching is
+Copyright 2010, Timothy Appnel, tima@cpan.org. All rights
+reserved.
